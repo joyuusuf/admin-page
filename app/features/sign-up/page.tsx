@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -41,7 +40,7 @@ const formSchema = z.object({
 
 export default function ProfileForm() {
     const [showAlert, setShowAlert] = useState(false)
-    const [loading, setLoading] = useState(false) // Loading state
+    const [loading, setLoading] = useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
