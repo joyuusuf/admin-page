@@ -67,7 +67,7 @@ export default function ProfileForm() {
             setShowAlert(false)
             console.log(values)
             
-            router.push('/signup')
+            router.push('/login')
         }
     }
 

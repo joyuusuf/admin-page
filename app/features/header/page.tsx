@@ -35,7 +35,7 @@ export default function Header() {
                         Dashboard
                     </Link>
                     <Link
-                        href="/features/table-data"
+                        href="/features/order"
                         className="text-muted-foreground transition-colors hover:text-foreground"
                     >
                         Orders
@@ -85,7 +85,7 @@ export default function Header() {
                             </Link>
 
                             <Link
-                                href="/features/table-data"
+                                href="/features/order"
                                 className="text-muted-foreground hover:text-foreground"
                             >
                                 Orders

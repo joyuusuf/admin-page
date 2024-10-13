@@ -8,8 +8,9 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-  } from "@/components/ui/table"
-import React from "react";
+  } from "@/components/ui/table";
+
+  import Header from "../header/page";
   
   const invoices = [
     {
@@ -58,9 +59,12 @@ import React from "react";
   
   export default function TableDemo() {
     return (
-      <Table>
+     <div>
+
+        <Header />
+       <Table className="mt-20">
         <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
+        <TableHeader >
           <TableRow>
             <TableHead className="w-[100px]">Invoice</TableHead>
             <TableHead>Status</TableHead>
@@ -85,6 +89,8 @@ import React from "react";
           </TableRow>
         </TableFooter>
       </Table>
+    
+     </div>
     )
   }
   
