@@ -45,7 +45,7 @@ import {
 } from "@/components/ui/table";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
-import AdminSearch from "@/components/features/admin-search"
+import AdminSearch from "@/app/features/admin-search"
 
 export const description =
   "An application shell with a header and main content area. The header has a navbar, a search input and and a user nav dropdown. The user nav is toggled by a button with an avatar image."
@@ -69,7 +69,7 @@ export default function Dashboard() {
             Dashboard
           </Link>
           <Link
-            href="#"
+            href="/features/table-data"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Orders
