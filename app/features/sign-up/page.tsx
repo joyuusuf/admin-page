@@ -15,7 +15,7 @@ import {
     FormLabel,
 } from "@/components/ui/form";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
+import { Terminal, Loader2 } from "lucide-react"
 
 const formSchema = z.object({
     firstname: z.string().min(3, {
@@ -41,8 +41,8 @@ const formSchema = z.object({
 
 export default function ProfileForm() {
     const [showAlert, setShowAlert] = useState(false)
+    const [loading, setLoading] = useState(false) // Loading state
 
-   
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -57,17 +57,25 @@ export default function ProfileForm() {
     const { formState } = form
     const router = useRouter()
 
-   
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         if (Object.keys(formState.errors).length > 0) {
-            
             setShowAlert(true)
         } else {
-            
             setShowAlert(false)
+            setLoading(true) 
             console.log(values)
             
-            router.push('/login')
+           
+            try {
+               
+                await new Promise((resolve) => setTimeout(resolve, 3000))
+                router.push('/login')
+            } catch (error) {
+                console.error(error)
+                setShowAlert(true)
+            } finally {
+                setLoading(false) 
+            }
         }
     }
 
@@ -84,12 +92,12 @@ export default function ProfileForm() {
             )}
 
             <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)} 
-                    className="space-y-8"
-                >
-                    <div className="flex justify-center">
-                        <div className="w-full max-w-md border border-gray-300 p-4 rounded-md">
+                <div className="flex justify-center items-center min-h-screen">
+                    <div className="w-full max-w-md border border-gray-300 p-6 rounded-md">
+                        <form
+                            onSubmit={form.handleSubmit(onSubmit)}
+                            className="space-y-4" // Reduced spacing for closer elements
+                        >
                             <FormField
                                 control={form.control}
                                 name="firstname"
@@ -150,15 +158,19 @@ export default function ProfileForm() {
                                     </FormItem>
                                 )}
                             />
-                        </div>
+
+                           
+                            <div className="flex justify-center">
+                                <Button type="submit" disabled={loading} className="flex items-center pr-11 pl-11">
+                                    {loading && (
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    )}
+                                    {loading ? "Please wait" : "Submit"}
+                                </Button>
+                            </div>
+                        </form>
                     </div>
-                    
-                    <div className="flex justify-center">
-                        <Button type="submit">
-                            Submit
-                        </Button>
-                    </div>
-                </form>
+                </div>
             </Form>
         </>
     )
