@@ -69,7 +69,7 @@ export default function ProfileForm() {
             try {
                
                 await new Promise((resolve) => setTimeout(resolve, 3000))
-                router.push('/login')
+                router.push('/features/login')
             } catch (error) {
                 console.error(error)
                 setShowAlert(true)
@@ -92,11 +92,15 @@ export default function ProfileForm() {
             )}
 
             <Form {...form}>
+            <h1 className="text-center font-extrabold text-4xl mt-9 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Sign Up</h1>
+
                 <div className="flex justify-center items-center min-h-screen">
+                    
                     <div className="w-full max-w-md border border-gray-300 p-6 rounded-md">
+
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="space-y-4" // Reduced spacing for closer elements
+                            className="space-y-4"
                         >
                             <FormField
                                 control={form.control}
@@ -161,7 +165,8 @@ export default function ProfileForm() {
 
                            
                             <div className="flex justify-center">
-                                <Button type="submit" disabled={loading} className="flex items-center pr-11 pl-11">
+                                <Button type="submit" onClick={()=> router.push("/features/login")} 
+                                disabled={loading} className="flex items-center pr-11 pl-11">
                                     {loading && (
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     )}
